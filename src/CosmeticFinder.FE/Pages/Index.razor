@@ -1,0 +1,76 @@
+﻿@page "/"
+@using CosmeticFinder.FE.Shared
+@using CosmeticFinder.FE.Gateways
+@using CosmeticFinder.FE.Gateways.Responses
+@using CosmeticFinder.FE.Gateways
+@using CosmeticFinder.FE.Gateways.Responses
+
+@layout MainLayout
+@inject ICosmeticFinder CosmeticFinderApi
+
+<div class="container">
+	<div id ="fill_compose">
+		<input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText">
+	</div>	      
+		
+
+    <div class="category">
+        
+       @* <InputSelect id="department" @bind-Value="DepartmentId">
+            @foreach (var dept in Departments)
+            {
+                <option value="@dept.DepartmentId">@dept.DepartmentName</option>
+            }
+        </InputSelect>
+        *@
+@*
+        <select class="category">
+            <option value="w" selected>Wybierz kategorię</option>
+            <option value="t">Twarz</option>
+            <option value="c">Ciało</option>
+            <option value="p">Perfumy</option>
+            <option value="m">Mężczyzna</option>
+            @bind="@_searchText"
+        </select>*@
+    </div>
+
+	<button class="search-btn" role="button" @onclick="FindCosmetics"> Szukaj </button >
+
+	<div id="isContain">
+		<fieldset>
+            <input type="radio" value="2" name="zawiera"> <b> Zawiera</b>		
+            <input type="radio" value="2" name="zawiera"> <b> Nie zawiera</b>		
+        </fieldset>
+	</div>	
+
+	<div class="popularne">
+		<h4>WYBIERZ Z POPULARNYCH WYSZUKIWAŃ</h4>
+	</div>
+	
+	<button class="popularne-btn" role="button" > Bez silikonów </button >
+	<button class="popularne-btn" role="button" > Nie dla wegan </button >
+    <button class="popularne-btn" role="button" > Bez alergenów </button >
+    <button class="popularne-btn" role="button" > Nie dla kobiet w ciąży </button >
+    <button class="popularne-btn" role="button" > Kosmetyki naturalne  </button >
+    <button class="popularne-btn" role="button" > Bez substancji zapachowych </button >
+
+
+</div>
+	
+@code {
+    private IEnumerable<CosmeticResponse>? _cosmetic;
+    private string? _searchText;
+
+    async Task FindCosmetics()
+    {
+        //if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText))
+        //{
+          //  _cosmetic = await CosmeticFinderApi.GetCosmetic();
+        //}
+    }
+
+    //protected override async Task OnInitializedAsync() {
+    //    _cosmetic = await CosmeticFinderApi.GetCosmetic();
+    //}
+
+}
