@@ -1,7 +1,4 @@
 ﻿@page "/"
-@using CosmeticFinder.FE.Shared
-@using CosmeticFinder.FE.Gateways
-@using CosmeticFinder.FE.Gateways.Responses
 @using CosmeticFinder.FE.Gateways
 @using CosmeticFinder.FE.Gateways.Responses
 
@@ -9,68 +6,130 @@
 @inject ICosmeticFinder CosmeticFinderApi
 
 <div class="container">
-	<div id ="fill_compose">
-		<input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText">
-	</div>	      
-		
+
+    <div id="fill_compose">
+        <input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText">
+    </div>
 
     <div class="category">
-        
-       @* <InputSelect id="department" @bind-Value="DepartmentId">
-            @foreach (var dept in Departments)
+
+        @*   <InputSelect id="category" @bind-Value="request.SelectedSearchOption.CategoryId">
+            
+            @if (Categories is not null)
             {
-                <option value="@dept.DepartmentId">@dept.DepartmentName</option>
+                @foreach (var category in Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
             }
-        </InputSelect>
-        *@
-@*
+            
+        </InputSelect>*@
+        @*
+        <select @bind="categoryResponse.Id">
+            @if (model?.Countries != null)
+            {
+                @foreach (var cnt in model.Countries)
+                {
+                    <option value="@cnt.Id">@cnt.Name</option>
+                }
+            }
+        </select>*@
+    
         <select class="category">
+         <option selected>Wybierz kategorię</option>
+         @foreach (var item in Categories)
+         {
+             <option> @item.Name </option>
+
+         }
+     </select>
+
+@*     <div>The selected value is: <b>@BindString</b></div>*@
+
+        @* <select class="category">
             <option value="w" selected>Wybierz kategorię</option>
             <option value="t">Twarz</option>
             <option value="c">Ciało</option>
             <option value="p">Perfumy</option>
             <option value="m">Mężczyzna</option>
-            @bind="@_searchText"
-        </select>*@
+             @bind="@_searchText"
+       </select>*@
     </div>
 
-	<button class="search-btn" role="button" @onclick="FindCosmetics"> Szukaj </button >
+    <button class="search-btn" role="button" @onclick="FindCosmetics"> Szukaj </button >
 
-	<div id="isContain">
-		<fieldset>
-            <input type="radio" value="2" name="zawiera"> <b> Zawiera</b>		
-            <input type="radio" value="2" name="zawiera"> <b> Nie zawiera</b>		
-        </fieldset>
-	</div>	
+    <div class="isContain">
+        <Form Model="@request" class="isContain">
+            <RadioGroup @bind-Value="request.SelectedSearchOption" Items="_options"  Inline="@inline" ValueFunc="@(o => o?.IsContain.ToString())" NameFunc="@(o => o?.Name)"></RadioGroup>
+        </Form>
+    </div>
 
-	<div class="popularne">
-		<h4>WYBIERZ Z POPULARNYCH WYSZUKIWAŃ</h4>
-	</div>
-	
-	<button class="popularne-btn" role="button" > Bez silikonów </button >
-	<button class="popularne-btn" role="button" > Nie dla wegan </button >
-    <button class="popularne-btn" role="button" > Bez alergenów </button >
-    <button class="popularne-btn" role="button" > Nie dla kobiet w ciąży </button >
-    <button class="popularne-btn" role="button" > Kosmetyki naturalne  </button >
-    <button class="popularne-btn" role="button" > Bez substancji zapachowych </button >
+    @*HelpText="@($"The selected option is {request.SelectedSearchOption?.Name} ({request.SelectedSearchOption?.isContain})")"*@
+
+
+
+    <div class="popularne">
+        <h4>WYBIERZ Z POPULARNYCH WYSZUKIWAŃ</h4>
+    </div>
+
+    <button class="popularne-btn" role="button"> Bez silikonów </button >
+    <button class="popularne-btn" role="button"> Nie dla wegan </button >
+    <button class="popularne-btn" role="button"> Bez alergenów </button >
+    <button class="popularne-btn" role="button"> Nie dla kobiet w ciąży </button >
+    <button class="popularne-btn" role="button"> Kosmetyki naturalne </button >
+    <button class="popularne-btn" role="button"> Bez substancji zapachowych </button >
 
 
 </div>
 	
 @code {
+  
+    //public string[] items = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+
+
+
+
+    private bool inline = true;
+    private Request request = new();
+
+    private readonly SearchOption[] _options = {
+        new() { IsContain = true, Name = "Zawiera" },
+        new() { IsContain = false, Name = "Nie zawiera" }
+    };
+
+    public class Request
+    {
+        public SearchOption SelectedSearchOption { get; set; }
+    }
+
+    public class SearchOption
+    {
+        public bool IsContain { get; set; }
+        public string Name { get; set; }
+        public int CategoryId { get; set; }
+    }
+
+    private IEnumerable<CategoryResponse>? Categories;
+
+
+
     private IEnumerable<CosmeticResponse>? _cosmetic;
     private string? _searchText;
+     
+
+    protected override async Task OnInitializedAsync()
+    {
+        Categories = await CosmeticFinderApi.GetCategories();
+        //CategoryResponse categoryResponse = new CategoryResponse();
+        //categoryResponse.Id = 1;
+
+    }
 
     async Task FindCosmetics()
     {
-        //if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText))
-        //{
-          //  _cosmetic = await CosmeticFinderApi.GetCosmetic();
-        //}
+        if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText))
+        {
+            _cosmetic = await CosmeticFinderApi.GetCosmetic(_searchText,8655,true, true,request.SelectedSearchOption.IsContain);
+        }
     }
-
-    //protected override async Task OnInitializedAsync() {
-    //    _cosmetic = await CosmeticFinderApi.GetCosmetic();
-    //}
-
 }
