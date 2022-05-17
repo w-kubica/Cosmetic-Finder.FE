@@ -12,53 +12,46 @@
     </div>
 
     <div class="category">
-
-        @*   <InputSelect id="category" @bind-Value="request.SelectedSearchOption.CategoryId">
-            
+        <select class="category" @bind="@SelectedCategoryId">
+            <option value="0" selected>Wybierz kategorię</option>
             @if (Categories is not null)
             {
-                @foreach (var category in Categories)
+                @foreach (var item in Categories)
                 {
-                    <option value="@category.Id">@category.Name</option>
+             
+                    <option value="@item.Id"> @item.Name </option>
+                   @* Console.WriteLine($"{item.Id} {item.Name}");*@
                 }
             }
-            
-        </InputSelect>*@
-        @*
-        <select @bind="categoryResponse.Id">
-            @if (model?.Countries != null)
-            {
-                @foreach (var cnt in model.Countries)
-                {
-                    <option value="@cnt.Id">@cnt.Name</option>
-                }
-            }
-        </select>*@
-    
-        <select class="category" @bind="@SelectedCategoryId">
-         <option selected>Wybierz kategorię</option>
-         @foreach (var item in Categories)
-         {
-             <option value="@item.Id"> @item.Name </option>
-             @*Console.WriteLine($"{item.Id} {item.Name}");*@
-         }
-         
+         @{ Console.WriteLine(SelectedCategoryId); }
         </select>
-
-
     </div>
 
     <button class="search-btn" role="button" @onclick="FindCosmetics"> Szukaj </button >
 
-    <div class="isContain">
+   @* <div class="isContain">
         <Form Model="@request" class="isContain">
             <RadioGroup @bind-Value="request.SelectedSearchOption" Items="_options"  Inline="@inline" ValueFunc="@(o => o?.IsContain.ToString())" NameFunc="@(o => o?.Name)"></RadioGroup>
         </Form>
-    </div>
+    </div>*@
 
     @*HelpText="@($"The selected option is {request.SelectedSearchOption?.Name} ({request.SelectedSearchOption?.isContain})")"*@
 
+   <div class="isContain">
+       
+       <EditForm Model="_searchOption">
+           <InputRadioGroup @bind-Value="SelectedSearchOption">
+               @foreach (var option in searchOptions)
+               {
+                   <InputRadio Value="option.IsContain" /> @option.Name <br />
+               }
+               @{ Console.WriteLine(SelectedSearchOption); }
+           </InputRadioGroup>
+       </EditForm>
+       
 
+     
+   </div>	
 
     <div class="popularne">
         <h4>WYBIERZ Z POPULARNYCH WYSZUKIWAŃ</h4>
@@ -73,66 +66,83 @@
 
 
 </div>
-	
+
 @code {
-  
-    //public string[] items = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+
+
+    public record SearchOption ()
+    {
+        public bool IsContain { get; set; }
+        public string Name { get; set; }
+    }
+
+    SearchOption _searchOption = new SearchOption(){};
+    List<SearchOption> searchOptions = new List<SearchOption>
+    {
+        new SearchOption(){IsContain=true, Name= "zawiera"},
+        new SearchOption(){IsContain=false, Name= "nie zawiera"}
+    };
 
 
 
 
     private bool inline = true;
-    private Request request = new();
-
-    private readonly SearchOption[] _options = {
-        new() { IsContain = true, Name = "Zawiera" },
-        new() { IsContain = false, Name = "Nie zawiera" }
-    };
-
-    public class Request
+   
+    public record OptionSearch(bool isContain, string Name)
     {
-        public SearchOption SelectedSearchOption { get; set; }
-    }
-
-    public class SearchOption
-    {
-        public bool IsContain { get; set; }
-        public string Name { get; set; }
-        public int CategoryId { get; set; }
     }
 
 
 
-    
-    string selectedCategoryId;
 
-    string SelectedCategoryId
-    {
-        get => selectedCategoryId;
-        set { selectedCategoryId = value; }
-    }
+    int SelectedCategoryId { get; set; }
+
+    bool SelectedSearchOption { get; set; }
 
     private IEnumerable<CategoryResponse>? Categories;
 
-
-
     private IEnumerable<CosmeticResponse>? _cosmetic;
     private string? _searchText;
-     
 
     protected override async Task OnInitializedAsync()
     {
         Categories = await CosmeticFinderApi.GetCategories();
-        //CategoryResponse categoryResponse = new CategoryResponse();
-        //categoryResponse.Id = 1;
-
     }
 
     async Task FindCosmetics()
     {
-        if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText))
+        if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText) && SelectedCategoryId != 0)
         {
-            _cosmetic = await CosmeticFinderApi.GetCosmetic(_searchText,8655,true, true,request.SelectedSearchOption.IsContain);
+            _cosmetic = await CosmeticFinderApi.GetCosmetic(_searchText,SelectedCategoryId ,true, true,SelectedSearchOption);
         }
     }
+
+
+
+
+
+    //private Request request = new();
+
+    //private readonly SearchOption[] _options = {
+    //    new() { IsContain = true, Name = "Zawiera" },
+    //    new() { IsContain = false, Name = "Nie zawiera" }
+    //};
+
+    //public class Request
+    //{
+    //    public SearchOption SelectedSearchOption { get; set; }
+    //}
+
+    //public class SearchOption
+    //{
+    //    public bool IsContain { get; set; }
+    //    public string Name { get; set; }
+    //    public int CategoryId { get; set; }
+    //}
+
+    //public class OptionSearch
+    //{
+    //    public bool IsContain { get; set; }
+    //    public string Name { get; set; }
+    //}
 }

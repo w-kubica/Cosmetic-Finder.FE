@@ -1,7 +1,7 @@
 ﻿/*select*/
 input[type=text], select {
-    width: 30rem;
-    padding: 1rem 1rem ;
+    width: 38rem;
+    padding: 1rem 1rem;
     margin: 1rem 1rem;
     line-height: 16px;
     min-height: 40px;
@@ -91,7 +91,7 @@ input[type=text], select {
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
-    clear: both;
+    float: left;
 }
 
     .search-btn:hover,
@@ -105,51 +105,15 @@ input[type=text], select {
         opacity: .5;
     }
 
-/*.dupa {
-    color: #FF4742;
-    border-bottom-color: #ff4742;
-    margin-left: 10rem;
-    display: inline-block*/
-    /*line-height: 16px;
-    min-height: 40px;
-    font-size: 20px;*/
-    /*clear: both;*/
-/*}*/
-
 .isContain {
-    font-size: 200px !important;
-    color: red;
-
+    color: #FF4742;
+    padding: 0rem 0rem;
+    margin-left: 2rem;
+    line-height: 16px;
+    min-height: 40px;
+    font-size: 20px;
+    clear: both;
 }
-
-.EditForm {
-    font-size: 200px !important;
-}
-
-.layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    place-items: center;
-    width: 100%;
-    height: 500px;
-    background-color: blanchedalmond;
-}
-
-.editform {
-    display: grid;
-    grid-template-columns: 1fr;
-    place-items: center;
-    width: 100%;
-    height: 200px;
-    background-color: blueviolet;
-}
-
-/*.clr-form {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: 1px;
-    text-overflow: '';
-}*/
 
 .popularne {
     color: gray;
