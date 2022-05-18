@@ -6,13 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Pages\Index.razor.css" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Pages\Index.razor.css" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Blazority" Version="0.11.0" />

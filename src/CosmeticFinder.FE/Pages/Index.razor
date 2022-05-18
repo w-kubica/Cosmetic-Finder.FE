@@ -1,9 +1,11 @@
 ﻿@page "/"
 @using CosmeticFinder.FE.Gateways
+@using CosmeticFinder.FE.Gateways.Requests
 @using CosmeticFinder.FE.Gateways.Responses
 
 @layout MainLayout
 @inject ICosmeticFinder CosmeticFinderApi
+@inject Microsoft.AspNetCore.Components.NavigationManager navigationManager
 
 <div class="container">
 
@@ -27,7 +29,7 @@
         </select>
     </div>
 
-    <button class="search-btn" role="button" @onclick="FindCosmetics"> Szukaj </button >
+    <button class="search-btn" role="button" @onclick="FindCosmetics" bind="@_cosmetic"> Szukaj </button >
 
     <div class="isContain">
        
@@ -54,7 +56,6 @@
     <button class="popularne-btn" role="button"> Nie dla kobiet w ciąży </button >
     <button class="popularne-btn" role="button"> Kosmetyki naturalne </button >
     <button class="popularne-btn" role="button"> Bez substancji zapachowych </button >
-
 </div>
 
 @code {
@@ -89,7 +90,18 @@
     {
         if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText) && SelectedCategoryId != 0)
         {
-            _cosmetic = await CosmeticFinderApi.GetCosmetic(_searchText,SelectedCategoryId ,true, true,SelectedSearchOption);
+            var request = new GetCosmeticsRequest()
+            {
+                search = _searchText,
+                mainCategoryId = SelectedCategoryId,
+                sort = true,
+                sortByPriceAsc = true,
+                shouldContainCompose = SelectedSearchOption
+            };
+
+            
+            _cosmetic = await CosmeticFinderApi.GetCosmetic(request);
+            //navigationManager.NavigateTo($"/navigatetopage/{_cosmetic}");
         }
     }
 }
