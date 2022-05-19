@@ -8,21 +8,14 @@
     float: left;
 }
 
-a, a:hover {
-    text-decoration: none;
-    color: grey;
-}
 
 img {
-    width: 67px;
-    height: 227px;
-    align-items: center;
+    width: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
-/*.card-img-top {
-    align-items: center;
-    width: 67px;
-    height: 227px;
-}*/
+
 product_details {
     border-bottom-color: grey;
     border: ridge;

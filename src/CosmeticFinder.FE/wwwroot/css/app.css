@@ -16,8 +16,9 @@ h1:focus {
     outline: none;
 }
 
-a, .btn-link {
-    color: #0071c1;
+a, a:hover {
+    text-decoration: none;
+    color: grey;
 }
 
 .btn-primary {

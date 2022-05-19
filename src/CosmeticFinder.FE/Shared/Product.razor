@@ -1,44 +1,19 @@
-﻿<a href="@Url">
-<div class="card bg-light mb-3" style="width: 18rem;">
-    <img class="card-img-top" src="@Picture" alt="@Name">
-    <div class="card-body">
-        <h5 class="card-title">
-            <b>@Brand @Name</b>
-        </h5>
-        <p class="card-text">@Caption</p>
-        <p class="card-text">@Price</p>
-    </div>
-</div>
-</a>
-
-@*<div class="product">
-    <div class="product_details">
-        <div class="product-pic">
-            <a href="@Url"> <img src="@Picture" target="_blank" alt="@Name"> </a>
-        </div>
-        <div class="product-name">
-            <a href="@Url" target="_blank">
-                <h3>
-                    <b>@Brand @Name</b>
-                </h3>
-            </a>
-            <h4>@Caption </h4>
-           @* <h6>Skład:
-                @if (!string.IsNullOrWhiteSpace(Compose))
-                {
-                    Compose = "Brak danych";
-                }
-                else
-                {
-                    @Compose;
-                }
+﻿<a href="@Url" target="_blank">
+    <div class="card bg-light mb-3" style="width: 18rem;">
+        <img class="card-img-top" src="@Picture" alt="@Name">
+        <div class="card-body">
+            <h5 class="card-title">
+                <b>@Brand @Name</b>
+            </h5>
+            <p class="card-text">@Caption</p>
+            <h6 class="card-text">
+                <b>
+                    @Price zł
+                </b>
             </h6>
-            
         </div>
-        <div class="product-price"> PRICE </div>
     </div>
-</div>
-*@
+</a>
 
 @code {
     [Parameter]
@@ -56,7 +31,7 @@
     [Parameter]
     public string Compose { get; set; }
     [Parameter]
-    public double Price { get; set; }
+    public double Price { get; set; } = 24.99;
     [Parameter]
     public int MainCategoryId { get; set; }
     [Parameter]

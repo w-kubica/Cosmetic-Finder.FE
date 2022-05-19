@@ -5,7 +5,6 @@
 
 @layout MainLayout
 @inject ICosmeticFinder CosmeticFinderApi
-@inject NavigationManager navigationManager
 
 <div class="container">
 
@@ -37,7 +36,7 @@
            <InputRadioGroup @bind-Value="SelectedSearchOption" >
                @foreach (var option in searchOptions)
                {
-                   <InputRadio Value="option.IsContain"/>
+                   <InputRadio Value="option.IsContain" />
                    @option.Name
                    <br/>
                }
@@ -58,25 +57,16 @@
     <button class="popularne-btn" role="button"> Bez substancji zapachowych </button >
 </div> 
 
-@if (_cosmetic is not null)
+@if (_isLoading)
 {
-    @foreach (var item in _cosmetic)
-    {
-        <Product
-            Brand="@item.Brand"
-            Caption="@item.Caption"
-            Url="@item.NavigateUrl"
-        ></Product>
-    }
+    <div class="loading">
+    <h3>Ładowanie...</h3>
+    </div>
 }
-
-<div class="loading">
-    @if (_isLoading)
-    {
-        <h3>Ładowanie...</h3>
-    }
-</div>
-
+else
+{
+    <ProductList Cosmetic="_cosmetic" />
+}
 
 @code {
 
@@ -113,16 +103,15 @@
         {
             var request = new GetCosmeticsRequest
             {
-                search = _searchText,
-                mainCategoryId = SelectedCategoryId,
-                sort = true,
-                sortByPriceAsc = true,
-                shouldContainCompose = SelectedSearchOption
+                Search = _searchText,
+                MainCategoryId = SelectedCategoryId,
+                Sort = true,
+                SortByPriceAsc = true,
+                ShouldContainCompose = SelectedSearchOption
             };
             LoadingOn();
             _cosmetic = await CosmeticFinderApi.GetCosmetic(request);
             LoadingOff();
-            //navigationManager.NavigateTo($"/navigatetopage/{_cosmetic}");
         }
     }
 
