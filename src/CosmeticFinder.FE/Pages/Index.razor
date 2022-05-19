@@ -5,7 +5,7 @@
 
 @layout MainLayout
 @inject ICosmeticFinder CosmeticFinderApi
-@inject Microsoft.AspNetCore.Components.NavigationManager navigationManager
+@inject NavigationManager navigationManager
 
 <div class="container">
 
@@ -29,7 +29,7 @@
         </select>
     </div>
 
-    <button class="search-btn" role="button" @onclick="FindCosmetics" bind="@_cosmetic"> Szukaj </button >
+    <button class="search-btn" role="button" @onclick="FindCosmetics"> Szukaj </button >
 
     <div class="isContain">
        
@@ -56,13 +56,34 @@
     <button class="popularne-btn" role="button"> Nie dla kobiet w ciąży </button >
     <button class="popularne-btn" role="button"> Kosmetyki naturalne </button >
     <button class="popularne-btn" role="button"> Bez substancji zapachowych </button >
+</div> 
+
+@if (_cosmetic is not null)
+{
+    @foreach (var item in _cosmetic)
+    {
+        <Product
+            Brand="@item.Brand"
+            Caption="@item.Caption"
+            Url="@item.NavigateUrl"
+        ></Product>
+    }
+}
+
+<div class="loading">
+    @if (_isLoading)
+    {
+        <h3>Ładowanie...</h3>
+    }
 </div>
+
 
 @code {
 
-    private string? _searchText;
+    private string? _searchText = "ascorbic acid";
     bool SelectedSearchOption = true;
     int SelectedCategoryId { get; set; }
+    private bool _isLoading;
 
     private IEnumerable<CategoryResponse>? Categories;
     private IEnumerable<CosmeticResponse>? _cosmetic;
@@ -75,10 +96,10 @@
 
     SearchOption _searchOption = new SearchOption(){};
 
-    List<SearchOption> searchOptions = new List<SearchOption>
+    List<SearchOption> searchOptions = new()
     {
-        new SearchOption(){IsContain=true, Name= "zawiera"},
-        new SearchOption(){IsContain=false, Name= "nie zawiera"}
+        new SearchOption{IsContain=true, Name= "zawiera"},
+        new SearchOption{IsContain=false, Name= "nie zawiera"}
     };
   
     protected override async Task OnInitializedAsync()
@@ -90,7 +111,7 @@
     {
         if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText) && SelectedCategoryId != 0)
         {
-            var request = new GetCosmeticsRequest()
+            var request = new GetCosmeticsRequest
             {
                 search = _searchText,
                 mainCategoryId = SelectedCategoryId,
@@ -98,10 +119,20 @@
                 sortByPriceAsc = true,
                 shouldContainCompose = SelectedSearchOption
             };
-
-            
+            LoadingOn();
             _cosmetic = await CosmeticFinderApi.GetCosmetic(request);
+            LoadingOff();
             //navigationManager.NavigateTo($"/navigatetopage/{_cosmetic}");
         }
+    }
+
+    void LoadingOn()
+    {
+        _isLoading = true;
+    }
+    
+    void LoadingOff()
+    {
+        _isLoading = false;
     }
 }

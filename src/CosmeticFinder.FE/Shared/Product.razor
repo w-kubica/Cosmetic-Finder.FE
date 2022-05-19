@@ -1,0 +1,64 @@
+﻿<a href="@Url">
+<div class="card bg-light mb-3" style="width: 18rem;">
+    <img class="card-img-top" src="@Picture" alt="@Name">
+    <div class="card-body">
+        <h5 class="card-title">
+            <b>@Brand @Name</b>
+        </h5>
+        <p class="card-text">@Caption</p>
+        <p class="card-text">@Price</p>
+    </div>
+</div>
+</a>
+
+@*<div class="product">
+    <div class="product_details">
+        <div class="product-pic">
+            <a href="@Url"> <img src="@Picture" target="_blank" alt="@Name"> </a>
+        </div>
+        <div class="product-name">
+            <a href="@Url" target="_blank">
+                <h3>
+                    <b>@Brand @Name</b>
+                </h3>
+            </a>
+            <h4>@Caption </h4>
+           @* <h6>Skład:
+                @if (!string.IsNullOrWhiteSpace(Compose))
+                {
+                    Compose = "Brak danych";
+                }
+                else
+                {
+                    @Compose;
+                }
+            </h6>
+            
+        </div>
+        <div class="product-price"> PRICE </div>
+    </div>
+</div>
+*@
+
+@code {
+    [Parameter]
+    public string Name { get; set; }
+    [Parameter]
+    public int Id { get; set; }
+    [Parameter]
+    public string Url { get; set; }
+    [Parameter]
+    public string Brand { get; set; }
+    [Parameter]
+    public string Caption { get; set; }
+    [Parameter]
+    public string Category { get; set; }
+    [Parameter]
+    public string Compose { get; set; }
+    [Parameter]
+    public double Price { get; set; }
+    [Parameter]
+    public int MainCategoryId { get; set; }
+    [Parameter]
+    public string Picture { get; set; } = "https://www.ros.net.pl/GalleryImages/product_photos/360_350/349995_390628_360_350.png";
+}
