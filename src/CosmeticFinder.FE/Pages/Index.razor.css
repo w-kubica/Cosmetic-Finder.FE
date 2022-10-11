@@ -1,6 +1,6 @@
 ﻿/*select*/
 input[type=text], select {
-    width: 400px;
+    width: 600px;
     padding: 1rem 1rem;
     margin: 1rem 1rem;
     line-height: 16px;
@@ -109,6 +109,7 @@ input[type=text], select {
     color: #FF4742;
     padding: 0rem 0rem;
     margin-left: 2rem;
+    margin-right: 1rem;
     line-height: 16px;
     min-height: 40px;
     font-size: 20px;

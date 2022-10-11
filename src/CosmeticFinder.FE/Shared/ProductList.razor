@@ -1,15 +1,21 @@
 ﻿@using CosmeticFinder.FE.Gateways.Responses
 
-@if (Cosmetic is not null)
+
+@if (Cosmetics is not null)
 {
-    <div class="container">
-        @for (var i = 0; i <= Cosmetic.Count(); i++)
-        {
-            var row = Cosmetic
-                .Skip(ColumnCount * i)
-                .Take(ColumnCount)
-                .ToList();
-                
+    <div class = "result">
+        <div class = "total-Count">
+            @Cosmetics.TotalRecords Wyników
+        </div>
+
+        <div class="container">
+            @for (var i = 0; i <= Cosmetics.Data.Count(); i++)
+            {
+                var row = Cosmetics.Data
+                    .Skip(ColumnCount * i)
+                    .Take(ColumnCount)
+                    .ToList();
+
                 <div class="row">
                     @foreach (var item in row)
                     {
@@ -17,7 +23,7 @@
                             <Product
                                 Brand="@item.Brand"
                                 Caption="@item.Caption"
-                                Url="@item.NavigateUrl" />
+                                Url="@item.NavigateUrl"/>
                         </div>
                     }
 
@@ -27,14 +33,13 @@
                         </div>
                     }
                 </div>
-        }
+            }
+        </div>
     </div>
-
+   
 }
 
 @code {
-    [Parameter]
-    public IEnumerable<CosmeticResponse>? Cosmetic { get; set; }
-
+    [Parameter] public CosmeticsResponse Cosmetics { get; set; }
     private int ColumnCount { get; set; } = 4;
 }
