@@ -53,7 +53,7 @@
 
 
 <ProductList Cosmetics="_cosmetics"></ProductList>
-
+<Sort OnSortChanged="SortChanged"></Sort>
 <Pagination TotalPagesQuantity="totalPages" CurrentPage="pageNumber" Radius="2" SelectedPage="SelectedPage"></Pagination>
 
 
@@ -67,6 +67,9 @@
     bool SelectedSearchOption { get; set; } = true;
     int SelectedCategoryId { get; set; }
     private bool _isLoading;
+
+    public string sortField = "id";
+    public bool ascending = true;
 
     private IEnumerable<CategoryResponse>? _categories;
     private IEnumerable<CosmeticResponse>? _cosmetic;
@@ -91,23 +94,58 @@
 
     private async Task SelectedPage(int page)
     {
+        Console.WriteLine(page.ToString());
         pageNumber = page;
         await FindCosmetics(pageNumber);
 
     }
 
+    private async Task SortChanged(string orderBy)
+    {
+        Console.WriteLine(orderBy);
+
+        if (orderBy == "Nazwa a-z")
+        {
+            sortField = "brand";
+            ascending = true;
+        }
+        else if (orderBy == "Nazwa z-a")
+        {
+            sortField = "brand";
+            ascending = false;
+        }
+        else if (orderBy == "Cena rosnąco")
+        {
+            sortField = "price";
+            ascending = true;
+        }
+        else if (orderBy == "Cena malejąco")
+        {
+            sortField = "price";
+            ascending = false;
+        }
+        else
+        {
+            sortField = "price";
+            ascending = false;
+        }
+        await FindCosmetics(1);
+        await SelectedPage(1);
+    } 
+
     async Task FindCosmetics(int page = 1, int quantityPerPage = 10)
     {
         if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText) && SelectedCategoryId != 0)
         {
+
             var request = new GetCosmeticsRequest
             {
                 PageNumber = page,
                 PageSize = quantityPerPage,
                 Search = _searchText,
                 MainCategoryId = SelectedCategoryId,
-                Sort = true,
-                SortByPriceAsc = true,
+                SortField = sortField,
+                Ascending = ascending,
                 ShouldContainCompose = SelectedSearchOption
             };
             LoadingOn();
