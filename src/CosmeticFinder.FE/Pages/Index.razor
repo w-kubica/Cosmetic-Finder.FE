@@ -54,13 +54,13 @@
 
 <ProductList Cosmetics="_cosmetics"></ProductList>
 <Sort OnSortChanged="SortChanged"></Sort>
-<Pagination TotalPagesQuantity="totalPages" CurrentPage="pageNumber" Radius="2" SelectedPage="SelectedPage"></Pagination>
+<Pagination TotalPagesQuantity="_totalPages" CurrentPage="_pageNumber" Radius="2" SelectedPage="SelectedPage"></Pagination>
 
 
 @code {
-    private int totalPages;
-    private int pageNumber = 1;
-    public int totalRecords;
+    private int _totalPages;
+    private int _pageNumber = 1;
+    private int _totalRecords;
 
     private string? _searchText = "ascorbic acid";
     readonly SearchOption _searchOption = new();
@@ -68,8 +68,8 @@
     int SelectedCategoryId { get; set; }
     private bool _isLoading;
 
-    public string sortField = "id";
-    public bool ascending = true;
+    private string _sortField = "id";
+    private bool _ascending = true;
 
     private IEnumerable<CategoryResponse>? _categories;
     private IEnumerable<CosmeticResponse>? _cosmetic;
@@ -94,10 +94,8 @@
 
     private async Task SelectedPage(int page)
     {
-        Console.WriteLine(page.ToString());
-        pageNumber = page;
-        await FindCosmetics(pageNumber);
-
+        _pageNumber = page;
+        await FindCosmetics(_pageNumber);
     }
 
     private async Task SortChanged(string orderBy)
@@ -106,53 +104,51 @@
 
         if (orderBy == "Nazwa a-z")
         {
-            sortField = "brand";
-            ascending = true;
+            _sortField = "brand";
+            _ascending = true;
         }
         else if (orderBy == "Nazwa z-a")
         {
-            sortField = "brand";
-            ascending = false;
+            _sortField = "brand";
+            _ascending = false;
         }
         else if (orderBy == "Cena rosnąco")
         {
-            sortField = "price";
-            ascending = true;
+            _sortField = "price";
+            _ascending = true;
         }
         else if (orderBy == "Cena malejąco")
         {
-            sortField = "price";
-            ascending = false;
+            _sortField = "price";
+            _ascending = false;
         }
         else
         {
-            sortField = "price";
-            ascending = false;
+            _sortField = "price";
+            _ascending = false;
         }
         await FindCosmetics(1);
         await SelectedPage(1);
     } 
 
-    async Task FindCosmetics(int page = 1, int quantityPerPage = 10)
+    async Task FindCosmetics(int page=1, int quantityPerPage = 24)
     {
         if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText) && SelectedCategoryId != 0)
         {
-
             var request = new GetCosmeticsRequest
             {
                 PageNumber = page,
                 PageSize = quantityPerPage,
                 Search = _searchText,
                 MainCategoryId = SelectedCategoryId,
-                SortField = sortField,
-                Ascending = ascending,
+                SortField = _sortField,
+                Ascending = _ascending,
                 ShouldContainCompose = SelectedSearchOption
             };
             LoadingOn();
             _cosmetics = await CosmeticFinderApi.GetCosmetic(request);
-            totalPages=_cosmetics.TotalPages;
-            totalRecords = _cosmetics.TotalRecords;
-
+            _totalPages=_cosmetics.TotalPages;
+            _totalRecords = _cosmetics.TotalRecords;
             LoadingOff();
         }
     }
