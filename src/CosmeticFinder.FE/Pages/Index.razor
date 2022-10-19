@@ -25,7 +25,11 @@
         </select>
     </div>
 
-    <button class="search-btn" role="button" @onclick="e => FindCosmetics()">Szukaj</button >
+    <button class="search-btn" role="button" @onclick="e => FindCosmetics(_pageNumber=1)">Szukaj</button >
+    
+    <div class="morethanone">
+        Wiele składników oddziel przecinkami
+    </div>
 
     <div class="isContain">
         <EditForm Model="_searchOption">
@@ -49,13 +53,27 @@
     <button class="popularne-btn" role="button">Nie dla kobiet w ciąży </button >
     <button class="popularne-btn" role="button">Kosmetyki naturalne </button >
     <button class="popularne-btn" role="button">Bez substancji zapachowych </button >
+
+    @if (_cosmetics is not null)
+    {
+        <div class="details">
+            <div class="total-count">
+                @_totalRecords wyników
+            </div>
+            <div class="sort">
+                <Sort OnSortChanged="SortChanged"></Sort>
+            </div>
+        </div>
+       
+
+        <div class="product-list">
+            <ProductList Cosmetics="_cosmetics"></ProductList>
+        </div>
+        <div class="pagination">
+            <Pagination TotalPagesQuantity="_totalPages" CurrentPage="_pageNumber" Radius="2" SelectedPage="SelectedPage"></Pagination>
+        </div>
+    }
 </div> 
-
-
-<ProductList Cosmetics="_cosmetics"></ProductList>
-<Sort OnSortChanged="SortChanged"></Sort>
-<Pagination TotalPagesQuantity="_totalPages" CurrentPage="_pageNumber" Radius="2" SelectedPage="SelectedPage"></Pagination>
-
 
 @code {
     private int _totalPages;
@@ -83,8 +101,8 @@
 
     readonly List<SearchOption> _searchOptions = new()
     {
-        new SearchOption {IsContain = true, Name ="Zawiera"},
-        new SearchOption {IsContain = false, Name ="Nie zawiera"}
+        new SearchOption {IsContain = true, Name ="  Zawiera   "},
+        new SearchOption {IsContain = false, Name ="  Nie zawiera"}
     };
   
     protected override async Task OnInitializedAsync()
@@ -100,8 +118,7 @@
 
     private async Task SortChanged(string orderBy)
     {
-        Console.WriteLine(orderBy);
-
+       
         if (orderBy == "Nazwa a-z")
         {
             _sortField = "brand";

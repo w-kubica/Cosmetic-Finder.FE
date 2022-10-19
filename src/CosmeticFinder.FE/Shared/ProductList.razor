@@ -4,10 +4,6 @@
 @if (Cosmetics is not null)
 {
     <div class = "result">
-        <div class = "total-Count">
-            @Cosmetics.TotalRecords Wyników
-        </div>
-
         <div class="container">
             @for (var i = 0; i <= Cosmetics.Data.Count(); i++)
             {
