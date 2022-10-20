@@ -6,9 +6,62 @@
 @layout MainLayout
 @inject ICosmeticFinder CosmeticFinderApi
 
-<div class="container">
+@*<div class="container mt-3">*@
+   
+    
+   
+ 
+  @*  <div class="d-flex justify-content-between
+             mb-3 text-white">
+        <div class="p-2 fill_compose"><input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText"></div>
+        <div class="p-2 category">
+            <select class="category" @bind="@SelectedCategoryId">
+                <option value="0" selected>Wybierz kategorię</option>
+                @if (_categories is not null)
+                {
+                    @foreach (var item in _categories)
+                    {
+                        <option value="@item.Id"> @item.Name </option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="p-2">
+            <button type="button" class="search-btn " role="button" @onclick="e => FindCosmetics(_pageNumber = 1)">Szukaj</button>
+        </div>
+    </div>*@
+   
 
-    <div id="fill_compose">
+
+<div class="container">
+    <div class="search_properties">
+        <form class="form-inline">
+            
+            <div class="fill_compose">
+                    <input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText">
+                </div>
+            <div class=" category">
+                <select class="category" @bind="@SelectedCategoryId">
+                        <option value="0" selected>Wybierz kategorię</option>
+                        @if (_categories is not null)
+                        {
+                            @foreach (var item in _categories)
+                            {
+                                <option value="@item.Id"> @item.Name </option>
+                            }
+                        }
+                    </select>
+                </div>
+                @*<label>
+                    <input type="checkbox" name="remember"> Remember me
+                </label>*@
+            <button type="button" class="search-btn " role="button" @onclick="e => FindCosmetics(_pageNumber = 1)">Szukaj</button>
+           
+           
+        </form>
+    </div>
+   
+    @*<div class="fill_compose  form-group">
         <input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText">
     </div>
 
@@ -25,34 +78,29 @@
         </select>
     </div>
 
-    <button class="search-btn" role="button" @onclick="e => FindCosmetics(_pageNumber=1)">Szukaj</button >
+    <button type="button" class="search-btn btn btn-outline-primary " role="button" @onclick="e => FindCosmetics(_pageNumber=1)">Szukaj</button>
     
     <div class="morethanone">
         Wiele składników oddziel przecinkami
-    </div>
+    </div>*@
 
-    <div class="isContain">
-        <EditForm Model="_searchOption">
-           <InputRadioGroup @bind-Value="SelectedSearchOption" >
-               @foreach (var option in _searchOptions)
-               {
-                   <InputRadio Value="option.IsContain" />
-                   @option.Name
-               }
-           </InputRadioGroup>
-       </EditForm>
-    </div>	
 
     <div class="popularne">
         <h4>WYBIERZ Z POPULARNYCH WYSZUKIWAŃ</h4>
     </div>
-
-    <button class="popularne-btn" role="button">Bez silikonów </button >
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    @*<button class="popularne-btn" role="button">Bez silikonów </button >
     <button class="popularne-btn" role="button">Nie dla wegan </button >
     <button class="popularne-btn" role="button">Bez alergenów </button >
     <button class="popularne-btn" role="button">Nie dla kobiet w ciąży </button >
     <button class="popularne-btn" role="button">Kosmetyki naturalne </button >
-    <button class="popularne-btn" role="button">Bez substancji zapachowych </button >
+    <button class="popularne-btn" role="button">Bez substancji zapachowych </button >*@
 
     @if (_cosmetics is not null)
     {
@@ -64,7 +112,7 @@
                 <Sort OnSortChanged="SortChanged"></Sort>
             </div>
         </div>
-       
+
 
         <div class="product-list">
             <ProductList Cosmetics="_cosmetics"></ProductList>

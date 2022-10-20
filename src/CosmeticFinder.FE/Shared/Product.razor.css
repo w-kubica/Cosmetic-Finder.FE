@@ -1,10 +1,14 @@
 ﻿.product {
     margin-top: 4rem;
     margin-left: 10%;
-    margin-right: 10%;
-    align-items: center;
+    margin-right: 10%
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    align-items: right;
     justify-content: center;
-    padding: 1rem;
+    /*padding: 1rem;*/
     float: left;
 }
 

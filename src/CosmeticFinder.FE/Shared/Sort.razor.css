@@ -1,4 +1,4 @@
-﻿select.sort {
+﻿/*select.sort {
     background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
     background-position: calc(100% - 20px) calc(1em + 2px),calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
     background-size: 5px 5px, 5px 5px, 1px 1.5em;
@@ -24,6 +24,7 @@ input[type=text], select {
 }
 input[type=text], select {
     width: 200px;
+    border: 1px solid white;
     padding: 1rem 1rem;
     margin: 1rem 1rem;
     line-height: 16px;
@@ -37,4 +38,14 @@ input[type=text], select {
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     border-bottom-left-radius: 2rem;
+}*/
+select.sort {
+    border-radius: 2rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    min-height: 46px;
+    padding: 10px;
+    margin-right: 1.5rem;
 }

@@ -1,4 +1,4 @@
-﻿/*select*/
+﻿/*select
 input[type=text], select {
     width: 600px;
     padding: 1rem 1rem;
@@ -14,25 +14,27 @@ input[type=text], select {
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     border-bottom-left-radius: 2rem;
-}
-
+}*/
+/*
 input[type=text], select {
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
-}
+}*/
 
-    select.category {
-        background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
-        background-position: calc(100% - 20px) calc(1em + 2px),calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+
+
+    /*select.category {*/
+        /*background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);*/
+        /*background-position: calc(100% - 20px) calc(1em + 2px),calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
         background-size: 5px 5px, 5px 5px, 1px 1.5em;
         background-repeat: no-repeat;
     }
 
-        select.category:focus {
-            background-image: linear-gradient(45deg, gray 50%, transparent 50%), linear-gradient(135deg, transparent 50%, gray 50%), linear-gradient(to right, #ccc, #ccc);
-            background-position: calc(100% - 15px) 1em,calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
+        select.category:focus {*/
+            /*background-image: linear-gradient(45deg, gray 50%, transparent 50%), linear-gradient(135deg, transparent 50%, gray 50%), linear-gradient(to right, #ccc, #ccc);*/
+            /*background-position: calc(100% - 15px) 1em,calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
             background-size: 5px 5px, 5px 5px, 1px 1.5em;
             background-repeat: no-repeat;
             border-color: gray;
@@ -40,64 +42,94 @@ input[type=text], select {
         }
 
     select:-moz-focusring {
-        color: transparent;
-        text-shadow: 0 0 0 #000;
-    }
+        color: transparent;*/
+        /*text-shadow: 0 0 0 #000;
+    }*/
 
 .container {
-    margin-top: 4rem;
-    margin-left: 10%;
-    margin-right: 10%;
+    position: absolute;
+    top: 15rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    float: left;
+}
+.details {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.search_properties {
+    /* left: 0;
+    right: 0;
+    margin: auto;
+    align-items: center;
+    justify-content: center;*/
+    /*display: grid;
+    grid-gap: 10px;*/ /* Simply adjust this value !*/
+    /*grid-template-columns: repeat(3, 1fr);*/ /* OR grid-template-columns: 1fr 1fr 1fr;*/
+    /*grid-auto-rows: 1fr;
+    border: 1px solid green*/
+    /*display: block;*/
 }
 
-#fill_compose {
-    float: left;
-    line-height: 0;
-}
-
-.category {
-    margin-right: 2rem;
-    width: 300px;
-    float: left;
-}
-
-.search-btn {
-    width: 200px;
-    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
-    border: 1px solid #CB3434;
-    margin: 1rem 1rem;
+input, select.category, .search-btn {
     border-radius: 2rem;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     border-bottom-left-radius: 2rem;
-    /*box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;*/
-    box-sizing: border-box;
+    min-height: 45px;
+    font-size: 16px;
+}
+
+input {
+    width: 38rem;
+    float: left;
+}
+select.category {
+    width: 20rem;
+    float: left;
+    padding: 10px;
+}
+.search-btn {
+    width: 15rem;
+    margin: .5rem 0 .5rem 0;
+    background: linear-gradient(to bottom right, #c8243a, #FF9A5A);
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+}
+select {
+  
+    margin: .5rem 3.1875rem .5rem 0;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+
+.search-btn {
+ /*   font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background: linear-gradient(to bottom right, #c8243a, #FF9A5A);
+    border: 0.1rem solid #CB3434;
     color: #FFFFFF;
     cursor: pointer;
-    display: inline-block;
     font-weight: 600;
-    font-size: 20px;
-    line-height: 20px;
-    min-height: 40px;
-    outline: 0;
-    padding: 1rem 1rem;
+    font-size: 20px;*/
+    /*outline: 0;
     text-align: center;
     text-rendering: geometricprecision;
     text-transform: none;
     user-select: none;
-    -webkit-user-select: none;
     touch-action: manipulation;
-    vertical-align: middle;
-    float: left;
+    vertical-align: middle;*/
+    /*float: right;*/
 }
 
-    .search-btn:hover,
+    /*.search-btn:hover,
     .search-btn:active {
         background-color: #EF4765;
         background-position: 0 0;
@@ -106,7 +138,7 @@ input[type=text], select {
 
     .search-btn:active {
         opacity: .5;
-    }
+    }*/
 
 .morethanone {
     width: 100%;
@@ -123,19 +155,13 @@ input[type=text], select {
     clear: both;
 }
 .isContain {
-    color: #EF4765;
-    padding: 1rem;
-    margin-left: 2rem;
-    margin-right: 10rem;
-    line-height: 16px;
-    font-weight: 400
-    min-height: 40px;
+    color: #c8243a;
     font-size: 20px;
-    line-height: 0;
+    clear: both;
 }
 
 .popularne {
-    color: gray;
+    color: #626078;
     margin-top: 3rem;
     margin-bottom: 2rem;
     margin-left: 1rem;
@@ -180,28 +206,117 @@ input[type=text], select {
     }
 
 
-.details {
-    width: 100%
 
-}
 .total-count {
-    color: gray;
+    color: #040027;
     font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     font-size: 24px;
     font-weight: 400;
-    margin-top: 1.5rem;
-    margin-bottom: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    min-height: 46px;
+    padding: 10px;
     float: left;
 }
+
 .sort {
     color: gray;
     font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     font-size: 16px;
-    margin-right: 1rem;
     float: right;
 }
 .product-list {
     clear: both;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style the form - display items horizontally */
+.form-inline {
+    display: flex;
+    flex-direction: raw;
+    align-items: center;
+}
+
+/* Add some margins for each label */
+    .form-inline label {
+        margin: .5rem 3.1875rem .5rem 0;
+    }
+
+/* Style the input fields */
+    .form-inline input {
+        vertical-align: middle;
+        margin: .5rem 3.1875rem .5rem 0;
+        padding: 10px;
+        background-color: #fff;
+        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+        border-style: solid;
+        border-width: 1px;
+    }
+
+/* Style the submit button */
+.form-inline button {
+    padding: 10px;
+    background-color: dodgerblue;
+    border: 1px solid #ddd;
+    color: white;
+}
+
+.form-inline button:hover {
+    background-color: royalblue;
+}
+
+/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+@media (max-width: 1200px) {
+    .form-inline input, select.category, .search-btn {
+        margin: 1rem 0;
+        width: 24rem;
+        min-height: 35px;
+    }
+
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .container {
+        top: 18rem;
+    }
+    
+}
+
+@media (max-width: 1400px) {
+    .form-inline input, select.category, .search-btn {
+        margin: .5rem 1.1875rem .5rem 0;
+        width: 24rem;
+        min-height: 35px;
+    }
+    .container {
+        top: 10rem;
+    }
+   
+}
+
+@media (max-width: 550px) {
+    .container {
+        top: 0.5rem;
+    }
+}
+
+@media (max-width: 650px) {
+    .container {
+        top: 3rem;
+    }
+}
+@media (max-width: 700px) {
+    .container {
+        top: 11rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        top: 13rem;
+    }
 }
