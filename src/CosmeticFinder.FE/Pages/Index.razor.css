@@ -111,18 +111,21 @@ input, select.category, .search-btn {
 }
 
 input {
-    width: 38rem;
-    float: left;
+    width: 100%;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-style: solid;
+    border-width: 1px;
+    min-height: 46px;
+    padding: 10px;
 }
 select.category {
-    width: 20rem;
     float: left;
     padding: 10px;
     min-height: 46px;
 }
 .search-btn {
     width: 15rem;
-    margin: .5rem 0 .5rem 0;
+    margin: .5rem 0 0 0;
     background: linear-gradient(to bottom right, #c8243a, #FF9A5A);
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-style: solid;
@@ -176,33 +179,36 @@ select {
     }*/
 
 .morethanone {
-
     color: gray;
     font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     justify-content: left;
     font-size: 18px;
     font-weight: 300;
-    margin-top: 0.15rem;
-    margin-bottom: 0.5rem;
+    
     margin-left: 2rem;
+}
+p {
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
    
-    line-height: 0;
-    clear: both;
 }
 .isContain {
     color: #c8243a;
     font-size: 20px;
+    line-height: 0;
+    margin-top: 1.25rem;
+    margin-bottom: 1.5rem;
     clear: both;
 }
 
 .popularne {
     color: #626078;
+    font-size: 22px;
 }
 
 .popularne-btn, .popularne-btn-2 {
     background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
-    margin-right: 2.97275rem;
-    margin-top: 1rem;
+    margin-right: 4.38175rem;
     border: 0;
     border-radius: 12px;
     color: #FFFFFF;
@@ -213,6 +219,7 @@ select {
     padding: 0 1rem;
     text-align: center;
     transition: box-shadow .2s ease-in-out;
+    margin-bottom: 1rem;
 }
 .popularne-btn-2 {
     margin-right: 0rem;
@@ -284,7 +291,7 @@ select {
 
 /* Style the submit button */
 .form-inline button {
-    padding: 10px;
+    padding: 0 10px 0 10px;
     background-color: dodgerblue;
     border: 1px solid #ddd;
     color: white;
@@ -296,24 +303,44 @@ select {
 
 /* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
 @media (max-width: 1200px) {
-    .form-inline input, select.category, .search-btn {
+    .form-inline input, .category {
         margin: 1rem 0;
-        width: 22rem;
         min-height: 35px;
+       
     }
-    .form-inline {
+    .form-inline, category {
         flex-direction: column;
         align-items: center;
     }
+
+    select.category {
+        margin-left: 0;
+        margin-right: 0;
+        
+    }
     .container {
-        top: 18rem;
+       /* top: 18rem;*/
+        width: 50%
+    }
+
+    .isContain {
+        text-align: center;
+    }
+    p {
+        text-align: center;
+    }
+    .popularne-btn-2 {
+        margin-right: 3.38175rem;
     }
 }
 
 @media (max-width: 600px) {
     .popularne-btn {
         margin-right: .5rem;
+        margin-bottom: .5rem;
+       
     }
+
 }
 
 @media (max-width: 1100px) {
@@ -322,36 +349,78 @@ select {
     }
 }
 @media (max-width: 1400px) {
-    .form-inline input, select.category, .search-btn  {
+    .form-inline input  {
         margin: .5rem 1.1875rem .5rem .5rem;
-        width: 20rem;
         min-height: 35px;
     }
-    .container {
-        top: 10rem;
+    .isContain {
+        /*margin: .5rem 1.1875rem .5rem .5rem;*/
+        flex-direction: column;
+        text-align: center;
     }
+  /*  .container {
+        top: 10rem;
+    }*/
 }
 
 @media (max-width: 550px) {
-    .container {
+  /*  .container {
         top: 0.5rem;
-    }
+    }*/
 }
 
 @media (max-width: 650px) {
     .container {
-        top: 3rem;
+        /*top: 3rem;*/
     }
 }
-@media (max-width: 700px) {
+@media (max-width: 750px) {
     .container {
-        top: 11rem;
+        /*top: 11rem;*/
+        width: 100%
     }
 }
 
 @media (max-width: 800px) {
     .container {
-        top: 13rem;
+        /*top: 13rem;*/
     }
 }
 
+.wrapper {
+    margin-bottom: 1.5rem;
+    /*overflow: hidden;*/
+}
+.isContain {
+    float: left;
+    background-color: white;
+    width: 100%;
+    margin: 20px 20px 20px 0;
+}
+.category {
+    float: left;
+    margin: 20px 20px 20px 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.search-btn {
+    background-color: white;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0 20px 0;
+}
+
+
+label span {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.popularne-buttons {
+    text-align: center;
+}
+
+.btn-toolbar {
+    justify-content: center;
+}

@@ -20,6 +20,7 @@ h1 {
 
 .logo {
     margin-top: 3rem;
+    margin-bottom: 1rem;
 }
 /*img {*/
 /*-webkit-appearance: none;*/
@@ -31,7 +32,6 @@ h1 {
 
 
 img {
-    width: 20%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -56,10 +56,10 @@ footer {
 }
 @media (max-width: 500px) {
     img {
-        width: 500%
+        width: 80%
     }
 }
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
     img {
         width: 70%
     }
@@ -93,7 +93,7 @@ footer {
     img {
         width: 30%
     }
-}
+}*/
 /*@media (max-width: 600px) {
     img {
         width: 70%
