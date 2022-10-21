@@ -16,6 +16,7 @@
     
   <ItemGroup>
 	  <PackageReference Include="BlazorPagination" Version="0.2.16" />
+	  <PackageReference Include="Delegate.SassBuilder" Version="1.4.0" />
 	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.5" PrivateAssets="all" />
     <PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />

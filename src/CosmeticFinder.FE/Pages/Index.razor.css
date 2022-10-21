@@ -1,4 +1,5 @@
-﻿/*select
+﻿
+/*select
 input[type=text], select {
     width: 600px;
     padding: 1rem 1rem;
@@ -22,19 +23,16 @@ input[type=text], select {
     text-indent: 1px;
     text-overflow: '';
 }*/
-
-
-
-    /*select.category {*/
-        /*background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);*/
-        /*background-position: calc(100% - 20px) calc(1em + 2px),calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+/*select.category {*/
+/*background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);*/
+/*background-position: calc(100% - 20px) calc(1em + 2px),calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
         background-size: 5px 5px, 5px 5px, 1px 1.5em;
         background-repeat: no-repeat;
     }
 
         select.category:focus {*/
-            /*background-image: linear-gradient(45deg, gray 50%, transparent 50%), linear-gradient(135deg, transparent 50%, gray 50%), linear-gradient(to right, #ccc, #ccc);*/
-            /*background-position: calc(100% - 15px) 1em,calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
+/*background-image: linear-gradient(45deg, gray 50%, transparent 50%), linear-gradient(135deg, transparent 50%, gray 50%), linear-gradient(to right, #ccc, #ccc);*/
+/*background-position: calc(100% - 15px) 1em,calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
             background-size: 5px 5px, 5px 5px, 1px 1.5em;
             background-repeat: no-repeat;
             border-color: gray;
@@ -43,9 +41,8 @@ input[type=text], select {
 
     select:-moz-focusring {
         color: transparent;*/
-        /*text-shadow: 0 0 0 #000;
+/*text-shadow: 0 0 0 #000;
     }*/
-
 .container {
     position: absolute;
     top: 15rem;
@@ -55,12 +52,13 @@ input[type=text], select {
     margin: auto;
     align-items: center;
     justify-content: center;
+    padding: 0px;
 }
 .details {
     margin-top: 1.5rem;
     margin-bottom: 2rem;
     margin-left: 1rem;
-    margin-right: 1rem;
+/*    margin-right: 1rem;*/
 }
 .search_properties {
     /* left: 0;
@@ -82,8 +80,34 @@ input, select.category, .search-btn {
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     border-bottom-left-radius: 2rem;
-    min-height: 45px;
+    
     font-size: 16px;
+}
+
+.form-check-input {
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid rgba(0,0,0,.25);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+
+.form-check-input[type=radio] {
+    border-radius: 50%;
+}
+
+.form-check .form-check-input {
+    float: left;
+    margin-left: -1.5em;
 }
 
 input {
@@ -94,6 +118,7 @@ select.category {
     width: 20rem;
     float: left;
     padding: 10px;
+    min-height: 46px;
 }
 .search-btn {
     width: 15rem;
@@ -103,6 +128,16 @@ select.category {
     border-style: solid;
     border-width: 1px;
     float: left;
+    min-height: 45px;
+}
+.search-btn-2 {
+    margin: .5rem 0 .5rem 0;
+    background: linear-gradient(to bottom right, #c8243a, #FF9A5A);
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+    min-height: 45px;
 }
 select {
   
@@ -141,7 +176,7 @@ select {
     }*/
 
 .morethanone {
-    width: 100%;
+
     color: gray;
     font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     justify-content: left;
@@ -150,7 +185,7 @@ select {
     margin-top: 0.15rem;
     margin-bottom: 0.5rem;
     margin-left: 2rem;
-    margin-right: 1rem;
+   
     line-height: 0;
     clear: both;
 }
@@ -162,36 +197,26 @@ select {
 
 .popularne {
     color: #626078;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
 }
 
-.popularne-btn {
+.popularne-btn, .popularne-btn-2 {
     background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
-    margin-left: .8rem;
-    margin-right: .8rem;
+    margin-right: 2.97275rem;
+    margin-top: 1rem;
     border: 0;
     border-radius: 12px;
     color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
     font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     font-size: 16px;
     font-weight: 500;
     line-height: 2.5;
-    outline: transparent;
     padding: 0 1rem;
     text-align: center;
-    text-decoration: none;
     transition: box-shadow .2s ease-in-out;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
 }
-
+.popularne-btn-2 {
+    margin-right: 0rem;
+}
     .popularne-btn:not([disabled]):focus {
         box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
     }
@@ -226,6 +251,7 @@ select {
 .product-list {
     clear: both;
 }
+
 
 .pagination {
     display: flex;
@@ -272,30 +298,38 @@ select {
 @media (max-width: 1200px) {
     .form-inline input, select.category, .search-btn {
         margin: 1rem 0;
-        width: 24rem;
+        width: 22rem;
         min-height: 35px;
     }
-
     .form-inline {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
     }
     .container {
         top: 18rem;
     }
-    
 }
 
+@media (max-width: 600px) {
+    .popularne-btn {
+        margin-right: .5rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    .popularne-btn {
+        margin-right: 2.5rem;
+    }
+}
 @media (max-width: 1400px) {
-    .form-inline input, select.category, .search-btn {
-        margin: .5rem 1.1875rem .5rem 0;
-        width: 24rem;
+    .form-inline input, select.category, .search-btn  {
+        margin: .5rem 1.1875rem .5rem .5rem;
+        width: 20rem;
         min-height: 35px;
     }
     .container {
         top: 10rem;
     }
-   
 }
 
 @media (max-width: 550px) {
@@ -320,3 +354,4 @@ select {
         top: 13rem;
     }
 }
+
