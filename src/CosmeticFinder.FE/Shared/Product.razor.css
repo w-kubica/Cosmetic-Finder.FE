@@ -45,3 +45,8 @@ product_details {
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
 }
+
+.caption {
+    height: 50px;
+    font-size: 15px;
+}

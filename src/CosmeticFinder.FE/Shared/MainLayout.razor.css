@@ -35,6 +35,7 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: auto;
 }
 
 
@@ -54,11 +55,11 @@ footer {
     color: #EF4765;
     text-align: center;
 }
-@media (max-width: 500px) {
-    img {
-        width: 80%
-    }
+.card-img, .card-img-bottom, .card-img-top {
+    width: 330px;
 }
+
+
 /*@media (max-width: 600px) {
     img {
         width: 70%

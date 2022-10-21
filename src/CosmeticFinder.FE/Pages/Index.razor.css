@@ -57,8 +57,6 @@ input[type=text], select {
 .details {
     margin-top: 1.5rem;
     margin-bottom: 2rem;
-    margin-left: 1rem;
-/*    margin-right: 1rem;*/
 }
 .search_properties {
     /* left: 0;
@@ -245,7 +243,7 @@ p {
     font-size: 24px;
     font-weight: 400;
     min-height: 46px;
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
     float: left;
 }
 
@@ -389,13 +387,14 @@ p {
 
 .wrapper {
     margin-bottom: 1.5rem;
-    /*overflow: hidden;*/
+    margin-top: 1rem;
 }
 .isContain {
     float: left;
     background-color: white;
-    width: 100%;
-    margin: 20px 20px 20px 0;
+    width: 70%;
+    margin: 20px 0 20px 0;
+    text-align: center;
 }
 .category {
     float: left;
