@@ -7,33 +7,6 @@
 @layout MainLayout
 @inject ICosmeticFinder CosmeticFinderApi
 
-@*<div class="container mt-3">*@
-   
-    
-   
- 
-  @*  <div class="d-flex justify-content-between
-             mb-3 text-white">
-        <div class="p-2 fill_compose"><input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText"></div>
-        <div class="p-2 category">
-            <select class="category" @bind="@SelectedCategoryId">
-                <option value="0" selected>Wybierz kategorię</option>
-                @if (_categories is not null)
-                {
-                    @foreach (var item in _categories)
-                    {
-                        <option value="@item.Id"> @item.Name </option>
-                    }
-                }
-            </select>
-        </div>
-        <div class="p-2">
-            <button type="button" class="search-btn " role="button" @onclick="e => FindCosmetics(_pageNumber = 1)">Szukaj</button>
-        </div>
-    </div>*@
-   
-
-
 <div class="container">
     
     <form class="form-horizontal">
@@ -41,22 +14,7 @@
             <div class="fill_compose">
                 <input type="text" name="skladnik" placeholder="Wiele składników oddziel przecinkami" @bind="@_searchText">
             </div>
-         </div>
-   @*
-        <div class="form-group">
-            <div class="isContain">
-                <EditForm Model="_searchOption">
-                    <InputRadioGroup @bind-Value="SelectedSearchOption">
-                        @foreach (var option in _searchOptions)
-                        {
-                            <InputRadio Value="option.IsContain"/>
-                            @option.Name
-                        }
-                    </InputRadioGroup>
-                </EditForm>
-            </div>
-        </div>*@
-
+        </div>
         <div class="form-inline wrapper">
             <div class="isContain">
                 <EditForm Model="_searchOption">
@@ -70,16 +28,15 @@
                 </EditForm>
             </div>
             <select class="category" @bind="@SelectedCategoryId">
-                    <option value="0" selected>Wybierz kategorię</option>
-                    @if (_categories is not null)
+                <option value="0" selected>Wybierz kategorię</option>
+                @if (_categories is not null)
+                {
+                    @foreach (var item in _categories)
                     {
-                        @foreach (var item in _categories)
-                        {
-                            <option value="@item.Id"> @item.Name </option>
-                        }
+                        <option value="@item.Id"> @item.Name </option>
                     }
-                </select>
-            
+                }
+            </select>
             <button type="button" class="search-btn " role="button" @onclick="e => FindCosmetics(_pageNumber = 1)">Szukaj</button>
         </div>
         <div class="form-group  text-wrap">
@@ -87,107 +44,29 @@
                 <p class="text-xl-left">WYBIERZ Z POPULARNYCH WYSZUKIWAŃ</p>
             </div>
         </div>
-        
-          
- 
-</form>
-
+    </form>
+    
     <div class="btn-toolbar popularne-buttons" data-toggle="buttons">
+        @if (_tags is not null)
+        {
+            @foreach (var item in _tags)
+            {
+                <button type="button" class="popularne-btn btn btn-outline-danger" disabled="@IsDisabled"
+                        @onclick="e => SelectedTag(item.Id)">
+                    @item.TagName
+                </button>
+            }
+        }
+    </div>
+    
+    
+   
+   @* <div class="btn-toolbar popularne-buttons" data-toggle="buttons">
         <button class="popularne-btn btn btn-outline-danger" role="button" @onclick="Silikony"> Bez silikonów</button>
     <button class="popularne-btn btn btn-outline-danger" role="button">Nie dla wegan </button >
     <button class="popularne-btn btn btn-outline-danger" role="button">Bez alergenów </button >
         <button class="popularne-btn btn btn-outline-danger" role="button">Nie dla kobiet w ciąży </button >
         <button class="popularne-btn btn btn-outline-danger" role="button">Antyoksydanty </button>
-        <button class="popularne-btn-2 btn btn-outline-danger" role="button">Bez substancji zapachowych </button >
-
-
-</div>
-
-@* <div class="search_properties">
-        <form class="form-inline">
-*@
-           @* <div class="fill_compose">
-                <input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText">
-            </div>*@
-            @*<div class="category">
-                <select class="category" @bind="@SelectedCategoryId">
-                    <option value="0" selected>Wybierz kategorię</option>
-                    @if (_categories is not null)
-                    {
-                        @foreach (var item in _categories)
-                        {
-                            <option value="@item.Id"> @item.Name </option>
-                        }
-                    }
-                </select>
-            </div>*@
-      @*      <button type="button" class="search-btn " role="button" @onclick="e => FindCosmetics(_pageNumber = 1)">Szukaj</button>
-
-
-        </form>
-    </div>
-    <div class="isContain">
-        <EditForm Model="_searchOption">
-            <InputRadioGroup @bind-Value="SelectedSearchOption">
-                @foreach (var option in _searchOptions)
-                {
-                    <InputRadio Value="option.IsContain"/>
-                    @option.Name
-                }
-            </InputRadioGroup>
-        </EditForm>
-    </div>*@
-    @*<div class="fill_compose  form-group">
-        <input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText">
-    </div>
-
-    <div class="category">
-        <select class="category" @bind="@SelectedCategoryId">
-            <option value="0" selected>Wybierz kategorię</option>
-            @if (_categories is not null)
-            {
-                @foreach (var item in _categories)
-                {
-                    <option value="@item.Id"> @item.Name </option>
-                }
-            }
-        </select>
-    </div>
-
-    <button type="button" class="search-btn btn btn-outline-primary " role="button" @onclick="e => FindCosmetics(_pageNumber=1)">Szukaj</button>
-    *@
-    @*<div class="morethanone">
-        <p class="text-sm-left"> Wiele składników oddziel przecinkami</p>
-    </div>*@
-@*
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-        <label class="form-check-label" for="inlineRadio1">zawiera</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-        <label class="form-check-label" for="inlineRadio2">nie zawiera</label>
-    </div>*@
- 
-    @*<div class="popularne">
-    <p class="text-xl-left">WYBIERZ Z POPULARNYCH WYSZUKIWAŃ</p>
-    </div>*@
-
-    @* <div class=".form-inline">
-        <button type="button" class="search-btn-2 " role="button">Bez silikonów</button>
-        <button type="button" class="search-btn-2 " role="button">Nie dla wegan</button>
-        <button type="button" class="search-btn-2 " role="button">Bez alergenów</button>
-        <button type="button" class="search-btn-2 " role="button">Nie dla kobiet w ciąży</button>
-        <button type="button" class="search-btn-2 " role="button">Kosmetyki naturalne</button>
-        <button type="button" class="search-btn-2 " role="button">Bez substancji zapachowych</button>
-    </div>*@
-
-   @* <div class=".form-inline">
-        <button class="popularne-btn btn btn-outline-danger" role="button">Bez silikonów </button >
-        <button class="popularne-btn btn btn-outline-danger" role="button">Nie dla wegan </button >
-        <button class="popularne-btn btn btn-outline-danger" role="button">Bez alergenów </button >
-        <button class="popularne-btn btn btn-outline-danger" role="button">Nie dla kobiet w ciąży </button >
-        <button class="popularne-btn btn btn-outline-danger" role="button">Kosmetyki naturalne </button >
         <button class="popularne-btn-2 btn btn-outline-danger" role="button">Bez substancji zapachowych </button >
     </div>*@
 
@@ -218,11 +97,12 @@
     private int _totalRecords;
     private string _silikony = "aqua, ascorbic acid";
 
-  
     private string? _searchText;
     readonly SearchOption _searchOption = new();
+
     bool SelectedSearchOption { get; set; } = true;
     int SelectedCategoryId { get; set; }
+    bool IsDisabled;
     private bool _isLoading;
 
     private string _sortField = "id";
@@ -230,8 +110,9 @@
 
     private IEnumerable<CategoryResponse>? _categories;
     private IEnumerable<CosmeticResponse>? _cosmetic;
+    private IEnumerable<TagResponse>? _tags;
     private CosmeticsResponse? _cosmetics;
-    
+
     public record SearchOption
     {
         public bool IsContain { get; set; }
@@ -247,6 +128,7 @@
     protected override async Task OnInitializedAsync()
     {
         _categories = await CosmeticFinderApi.GetCategories();
+        _tags = await CosmeticFinderApi.GetTags();
     }
 
     private async Task SelectedPage(int page)
@@ -255,9 +137,18 @@
         await FindCosmetics(_pageNumber);
     }
 
+    private async Task SelectedTag(int id)
+    {
+        IsDisabled = true;
+        var tag = _tags.SingleOrDefault(a => a.Id == id);
+        _searchText = $"{_searchText} {tag.TagValue}";
+        SelectedSearchOption = false;
+        FindCosmetics(1);
+        IsDisabled = false;
+    }
+
     private async Task SortChanged(string orderBy)
     {
-       
         if (orderBy == "Nazwa a-z")
         {
             _sortField = "brand";
@@ -278,11 +169,12 @@
             _sortField = "price";
             _ascending = false;
         }
-        else
+        else if (orderBy == "- Sortuj -")
         {
-            _sortField = "price";
-            _ascending = false;
+            _sortField = "id";
+            _ascending = true;
         }
+
         await FindCosmetics(1);
         await SelectedPage(1);
     } 
@@ -308,17 +200,6 @@
             LoadingOff();
         }
     }
-
-    async Task Silikony()
-    {
-        _searchText = $"{_searchText} {_silikony}";
-   
-        //_searchText = _silikony;
-        SelectedSearchOption = false;
-        FindCosmetics(1);
-
-    }
-
 
     void LoadingOn()
     {

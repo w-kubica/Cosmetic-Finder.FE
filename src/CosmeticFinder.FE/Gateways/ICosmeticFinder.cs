@@ -15,5 +15,8 @@ namespace CosmeticFinder.FE.Gateways
 
         [Get("/Categories")]
         Task<IEnumerable<CategoryResponse>> GetCategories();
+
+        [Get("/Tags")]
+        Task<IEnumerable<TagResponse>> GetTags();
     }
 }

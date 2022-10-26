@@ -1,16 +1,16 @@
 ﻿<div class="justify-content-center">
-<nav aria-label="Page navigation example" >
-    <ul class="pagination justify-content-center">
-        @foreach (var link in links)
-        {
-            <li @onclick="@(() => SelectedPageInternal(link))"
-                style="cursor: pointer;"
-                class="page-item @(link.Enabled ? null : "disabled") @(link.Active ? "active" : null)">
-                <span class="page-link" href="#">@link.Text</span>
-            </li>
-        }
-    </ul>
-</nav>
+    <nav aria-label="Page navigation example" >
+        <ul class="pagination justify-content-center">
+            @foreach (var link in links)
+            {
+                <li @onclick="@(() => SelectedPageInternal(link))"
+                    style="cursor: pointer;"
+                    class="page-item @(link.Enabled ? null : "disabled") @(link.Active ? "active" : null)">
+                    <span class="page-link" href="#" autoscroll="true">@link.Text</span>
+                </li>
+            }
+        </ul>
+    </nav>
 </div>
 
 
