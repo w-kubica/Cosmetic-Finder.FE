@@ -1,0 +1,43 @@
+﻿@using CosmeticFinder.FE.Gateways.Responses
+
+
+@if (Cosmetics is not null)
+{
+    <div class = "result">
+        <div class="container">
+            @for (var i = 0; i <= Cosmetics.Data.Count(); i++)
+            {
+                var row = Cosmetics.Data
+                    .Skip(ColumnCount * i)
+                    .Take(ColumnCount)
+                    .ToList();
+
+                <div class="row">
+                    @foreach (var item in row)
+                    {
+                        <div class="col">
+                            <Product
+                                Brand="@item.Brand"
+                                Caption="@item.Caption"
+                                Price="@item.Price"
+                                Picture="@item.Picture"
+                                Url="@item.NavigateUrl"/>
+                        </div>
+                    }
+
+                    @for (var j = 0; j < ColumnCount - row.Count; j++)
+                    {
+                        <div class="col">
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+   
+}
+
+@code {
+    [Parameter] public CosmeticsResponse Cosmetics { get; set; }
+    private int ColumnCount { get; set; } = 3;
+}

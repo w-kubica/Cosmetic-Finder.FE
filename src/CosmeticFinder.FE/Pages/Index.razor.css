@@ -1,8 +1,9 @@
-﻿/*select*/
+﻿
+/*select
 input[type=text], select {
-    width: 38rem;
+    width: 600px;
     padding: 1rem 1rem;
-    margin: 1rem 1rem;
+    margin: 1rem 1rem; 
     line-height: 16px;
     min-height: 40px;
     border: ridge;
@@ -14,25 +15,24 @@ input[type=text], select {
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     border-bottom-left-radius: 2rem;
-}
-
+}*/
+/*
 input[type=text], select {
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
-}
-
-    select.category {
-        background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
-        background-position: calc(100% - 20px) calc(1em + 2px),calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+}*/
+/*select.category {*/
+/*background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);*/
+/*background-position: calc(100% - 20px) calc(1em + 2px),calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
         background-size: 5px 5px, 5px 5px, 1px 1.5em;
         background-repeat: no-repeat;
     }
 
-        select.category:focus {
-            background-image: linear-gradient(45deg, gray 50%, transparent 50%), linear-gradient(135deg, transparent 50%, gray 50%), linear-gradient(to right, #ccc, #ccc);
-            background-position: calc(100% - 15px) 1em,calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
+        select.category:focus {*/
+/*background-image: linear-gradient(45deg, gray 50%, transparent 50%), linear-gradient(135deg, transparent 50%, gray 50%), linear-gradient(to right, #ccc, #ccc);*/
+/*background-position: calc(100% - 15px) 1em,calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
             background-size: 5px 5px, 5px 5px, 1px 1.5em;
             background-repeat: no-repeat;
             border-color: gray;
@@ -40,113 +40,188 @@ input[type=text], select {
         }
 
     select:-moz-focusring {
-        color: transparent;
-        text-shadow: 0 0 0 #000;
-    }
-
+        color: transparent;*/
+/*text-shadow: 0 0 0 #000;
+    }*/
 .container {
-    margin-top: 4rem;
-    margin-left: 10%;
-    margin-right: 10%;
+    position: absolute;
+    top: 15rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    float: left;
+    padding: 0px;
+}
+.details {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+.search_properties {
+    /* left: 0;
+    right: 0;
+    margin: auto;
+    align-items: center;
+    justify-content: center;*/
+    /*display: grid;
+    grid-gap: 10px;*/ /* Simply adjust this value !*/
+    /*grid-template-columns: repeat(3, 1fr);*/ /* OR grid-template-columns: 1fr 1fr 1fr;*/
+    /*grid-auto-rows: 1fr;
+    border: 1px solid green*/
+    /*display: block;*/
 }
 
-#fill_compose {
-    float: left;
-}
-
-.category {
-    margin-right: 2rem;
-    width: 300px;
-    float: left;
-}
-
-.search-btn {
-    width: 200px;
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    margin: 1rem 1rem;
+input, select.category, .search-btn {
     border-radius: 2rem;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     border-bottom-left-radius: 2rem;
-    /*box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;*/
-    box-sizing: border-box;
+    
+    font-size: 16px;
+}
+
+.form-check-input {
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid rgba(0,0,0,.25);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+
+.form-check-input[type=radio] {
+    border-radius: 50%;
+}
+
+.form-check .form-check-input {
+    float: left;
+    margin-left: -1.5em;
+}
+
+input {
+    width: 100%;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-style: solid;
+    border-width: 1px;
+    min-height: 46px;
+    padding: 10px;
+}
+select.category {
+    float: left;
+    padding: 10px;
+    min-height: 46px;
+}
+.search-btn {
+    width: 15rem;
+    margin: .5rem 0 0 0;
+    background: linear-gradient(to bottom right, #c8243a, #FF9A5A);
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+    min-height: 45px;
+}
+.search-btn-2 {
+    margin: .5rem 0 .5rem 0;
+    background: linear-gradient(to bottom right, #c8243a, #FF9A5A);
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+    min-height: 45px;
+}
+select {
+  
+    margin: .5rem 3.1875rem .5rem 0;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+
+.search-btn {
+ /*   font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background: linear-gradient(to bottom right, #c8243a, #FF9A5A);
+    border: 0.1rem solid #CB3434;
     color: #FFFFFF;
     cursor: pointer;
-    display: inline-block;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 1rem 1rem;
+    font-weight: 600;
+    font-size: 20px;*/
+    /*outline: 0;
     text-align: center;
     text-rendering: geometricprecision;
     text-transform: none;
     user-select: none;
-    -webkit-user-select: none;
     touch-action: manipulation;
-    vertical-align: middle;
-    float: left;
+    vertical-align: middle;*/
+    /*float: right;*/
 }
 
-    .search-btn:hover,
+    /*.search-btn:hover,
     .search-btn:active {
-        background-color: initial;
+        background-color: #EF4765;
         background-position: 0 0;
-        color: #FF4742;
+        color: #grey;
     }
 
     .search-btn:active {
         opacity: .5;
-    }
+    }*/
 
-#isContain {
-    color: #FF4742;
-    padding: 0rem 0rem;
+.morethanone {
+    color: gray;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    justify-content: left;
+    font-size: 18px;
+    font-weight: 300;
+    
     margin-left: 2rem;
-    line-height: 16px;
-    min-height: 40px;
+}
+p {
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+   
+}
+.isContain {
+    color: #c8243a;
     font-size: 20px;
+    line-height: 0;
+    margin-top: 1.25rem;
+    margin-bottom: 1.5rem;
     clear: both;
 }
 
 .popularne {
-    color: gray;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    color: #626078;
+    font-size: 22px;
 }
 
-.popularne-btn {
+.popularne-btn, .popularne-btn-2 {
     background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
-    margin-left: .8rem;
-    margin-right: .8rem;
+    margin-right: 4.38175rem;
     border: 0;
     border-radius: 12px;
     color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
     font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     font-size: 16px;
     font-weight: 500;
     line-height: 2.5;
-    outline: transparent;
     padding: 0 1rem;
     text-align: center;
-    text-decoration: none;
     transition: box-shadow .2s ease-in-out;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
+    margin-bottom: 1rem;
 }
-
+.popularne-btn-2 {
+    margin-right: 0rem;
+}
     .popularne-btn:not([disabled]):focus {
         box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
     }
@@ -154,3 +229,197 @@ input[type=text], select {
     .popularne-btn:not([disabled]):hover {
         box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
     }
+
+    .loading {
+        text-align: center;
+        color: grey;
+    }
+
+
+
+.total-count {
+    color: #040027;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    min-height: 46px;
+    padding: 15px 10px 10px 10px;
+    float: left;
+}
+
+.sort {
+    color: gray;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    float: right;
+}
+.product-list {
+    clear: both;
+}
+
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style the form - display items horizontally */
+.form-inline {
+    display: flex;
+    flex-direction: raw;
+    align-items: center;
+}
+
+/* Add some margins for each label */
+    .form-inline label {
+        margin: .5rem 3.1875rem .5rem 0;
+    }
+
+/* Style the input fields */
+    .form-inline input {
+        vertical-align: middle;
+        margin: .5rem 3.1875rem .5rem 0;
+        padding: 10px;
+        background-color: #fff;
+        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+        border-style: solid;
+        border-width: 1px;
+    }
+
+/* Style the submit button */
+.form-inline button {
+    padding: 0 10px 0 10px;
+    background-color: dodgerblue;
+    border: 1px solid #ddd;
+    color: white;
+}
+
+.form-inline button:hover {
+    background-color: royalblue;
+}
+
+/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+@media (max-width: 1200px) {
+    .form-inline input, .category {
+        margin: 1rem 0;
+        min-height: 35px;
+       
+    }
+    .form-inline, category {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    select.category {
+        margin-left: 0;
+        margin-right: 0;
+        
+    }
+    .container {
+       /* top: 18rem;*/
+        width: 50%
+    }
+
+    .isContain {
+        text-align: center;
+    }
+    p {
+        text-align: center;
+    }
+    .popularne-btn-2 {
+        margin-right: 3.38175rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .popularne-btn {
+        margin-right: .5rem;
+        margin-bottom: .5rem;
+       
+    }
+
+}
+
+@media (max-width: 1100px) {
+    .popularne-btn {
+        margin-right: 2.5rem;
+    }
+}
+@media (max-width: 1400px) {
+    .form-inline input  {
+        margin: .5rem 1.1875rem .5rem .5rem;
+        min-height: 35px;
+    }
+    .isContain {
+        /*margin: .5rem 1.1875rem .5rem .5rem;*/
+        flex-direction: column;
+        text-align: center;
+    }
+  /*  .container {
+        top: 10rem;
+    }*/
+}
+
+@media (max-width: 550px) {
+  /*  .container {
+        top: 0.5rem;
+    }*/
+}
+
+@media (max-width: 650px) {
+    .container {
+        /*top: 3rem;*/
+    }
+}
+@media (max-width: 750px) {
+    .container {
+        /*top: 11rem;*/
+        width: 100%
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        /*top: 13rem;*/
+    }
+}
+
+.wrapper {
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+}
+.isContain {
+    float: left;
+    background-color: white;
+    width: 70%;
+    margin: 20px 0 20px 0;
+    text-align: center;
+}
+.category {
+    float: left;
+    margin: 20px 20px 20px 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.search-btn {
+    background-color: white;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0 20px 0;
+}
+
+
+label span {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.popularne-buttons {
+    text-align: center;
+}
+
+.btn-toolbar {
+    justify-content: center;
+}

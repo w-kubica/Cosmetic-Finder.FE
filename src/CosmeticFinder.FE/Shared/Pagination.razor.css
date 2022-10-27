@@ -1,0 +1,19 @@
+﻿/*każdy element białe tło i szary font*/
+.pagination .page-link {
+    background: white;
+    color: #626078;
+    font-weight: 400;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+}
+/*podswietlenie na szaro aktywnej strony*/
+.pagination .page-item.active .page-link {
+    color: black !important;
+    background: lightgrey !important;
+    border-color: lightgrey;
+}
+
+.page-item.disabled .page-link {
+        color: gray !important;
+        background: white !important;
+    }

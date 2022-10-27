@@ -9,6 +9,7 @@
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="CosmeticFinder.FE.styles.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -19,7 +20,20 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+<script src="_framework/blazor.webassembly.js"></script>
+<script>
+    window.scrollToElementId = (elementId) => {
+        console.info('scrolling to element', elementId);
+        var element = document.getElementById(elementId);
+        if (!element) {
+            console.warn('element was not found', elementId);
+            return false;
+        }
+        element.scrollIntoView();
+        return true;
+    }
+</script>
 </body>
+
 
 </html>

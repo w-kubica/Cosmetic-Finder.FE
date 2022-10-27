@@ -1,76 +1,213 @@
 ﻿@page "/"
-@using CosmeticFinder.FE.Shared
 @using CosmeticFinder.FE.Gateways
+@using CosmeticFinder.FE.Gateways.Requests
 @using CosmeticFinder.FE.Gateways.Responses
-@using CosmeticFinder.FE.Gateways
-@using CosmeticFinder.FE.Gateways.Responses
+@using System.Security.AccessControl
 
 @layout MainLayout
 @inject ICosmeticFinder CosmeticFinderApi
 
 <div class="container">
-	<div id ="fill_compose">
-		<input type="text" name="skladnik" placeholder="Wpisz składnik" @bind="@_searchText">
-	</div>	      
-		
-
-    <div class="category">
-        
-       @* <InputSelect id="department" @bind-Value="DepartmentId">
-            @foreach (var dept in Departments)
+    
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="fill_compose">
+                <input type="text" name="skladnik" placeholder="Wiele składników oddziel przecinkami" @bind="@_searchText">
+            </div>
+        </div>
+        <div class="form-inline wrapper">
+            <div class="isContain">
+                <EditForm Model="_searchOption">
+                    <InputRadioGroup @bind-Value="SelectedSearchOption">
+                        @foreach (var option in _searchOptions)
+                        {
+                            <InputRadio Value="option.IsContain"/>
+                            @option.Name
+                        }
+                    </InputRadioGroup>
+                </EditForm>
+            </div>
+            <select class="category" @bind="@SelectedCategoryId">
+                <option value="0" selected>Wybierz kategorię</option>
+                @if (_categories is not null)
+                {
+                    @foreach (var item in _categories)
+                    {
+                        <option value="@item.Id"> @item.Name </option>
+                    }
+                }
+            </select>
+            <button type="button" class="search-btn " role="button" @onclick="e => FindCosmetics(_pageNumber = 1)">Szukaj</button>
+        </div>
+        <div class="form-group  text-wrap">
+            <div class="popularne">
+                <p class="text-xl-left">WYBIERZ Z POPULARNYCH WYSZUKIWAŃ</p>
+            </div>
+        </div>
+    </form>
+    
+    <div class="btn-toolbar popularne-buttons" data-toggle="buttons">
+        @if (_tags is not null)
+        {
+            @foreach (var item in _tags)
             {
-                <option value="@dept.DepartmentId">@dept.DepartmentName</option>
+                <button type="button" class="popularne-btn btn btn-outline-danger" disabled="@IsDisabled"
+                        @onclick="e => SelectedTag(item.Id)">
+                    @item.TagName
+                </button>
             }
-        </InputSelect>
-        *@
-@*
-        <select class="category">
-            <option value="w" selected>Wybierz kategorię</option>
-            <option value="t">Twarz</option>
-            <option value="c">Ciało</option>
-            <option value="p">Perfumy</option>
-            <option value="m">Mężczyzna</option>
-            @bind="@_searchText"
-        </select>*@
+        }
     </div>
+    
+    
+   
+   @* <div class="btn-toolbar popularne-buttons" data-toggle="buttons">
+        <button class="popularne-btn btn btn-outline-danger" role="button" @onclick="Silikony"> Bez silikonów</button>
+    <button class="popularne-btn btn btn-outline-danger" role="button">Nie dla wegan </button >
+    <button class="popularne-btn btn btn-outline-danger" role="button">Bez alergenów </button >
+        <button class="popularne-btn btn btn-outline-danger" role="button">Nie dla kobiet w ciąży </button >
+        <button class="popularne-btn btn btn-outline-danger" role="button">Antyoksydanty </button>
+        <button class="popularne-btn-2 btn btn-outline-danger" role="button">Bez substancji zapachowych </button >
+    </div>*@
 
-	<button class="search-btn" role="button" @onclick="FindCosmetics"> Szukaj </button >
-
-	<div id="isContain">
-		<fieldset>
-            <input type="radio" value="2" name="zawiera"> <b> Zawiera</b>		
-            <input type="radio" value="2" name="zawiera"> <b> Nie zawiera</b>		
-        </fieldset>
-	</div>	
-
-	<div class="popularne">
-		<h4>WYBIERZ Z POPULARNYCH WYSZUKIWAŃ</h4>
-	</div>
-	
-	<button class="popularne-btn" role="button" > Bez silikonów </button >
-	<button class="popularne-btn" role="button" > Nie dla wegan </button >
-    <button class="popularne-btn" role="button" > Bez alergenów </button >
-    <button class="popularne-btn" role="button" > Nie dla kobiet w ciąży </button >
-    <button class="popularne-btn" role="button" > Kosmetyki naturalne  </button >
-    <button class="popularne-btn" role="button" > Bez substancji zapachowych </button >
-
-
-</div>
-	
-@code {
-    private IEnumerable<CosmeticResponse>? _cosmetic;
-    private string? _searchText;
-
-    async Task FindCosmetics()
+    @if (_cosmetics is not null)
     {
-        //if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText))
-        //{
-          //  _cosmetic = await CosmeticFinderApi.GetCosmetic();
-        //}
+        <div class="details">
+            <div class="total-count">
+                @_totalRecords wyników
+            </div>
+            <div class="sort">
+                <Sort OnSortChanged="SortChanged"></Sort>
+            </div>
+        </div>
+
+
+        <div class="product-list">
+            <ProductList Cosmetics="_cosmetics"></ProductList>
+        </div>
+        <div class="pagination">
+            <Pagination TotalPagesQuantity="_totalPages" CurrentPage="_pageNumber" Radius="2" SelectedPage="SelectedPage"></Pagination>
+        </div>
+    }
+</div> 
+
+@code {
+    private int _totalPages;
+    private int _pageNumber = 1;
+    private int _totalRecords;
+    private string _silikony = "aqua, ascorbic acid";
+
+    private string? _searchText;
+    readonly SearchOption _searchOption = new();
+
+    bool SelectedSearchOption { get; set; } = true;
+    int SelectedCategoryId { get; set; }
+    bool IsDisabled;
+    private bool _isLoading;
+
+    private string _sortField = "id";
+    private bool _ascending = true;
+
+    private IEnumerable<CategoryResponse>? _categories;
+    private IEnumerable<CosmeticResponse>? _cosmetic;
+    private IEnumerable<TagResponse>? _tags;
+    private CosmeticsResponse? _cosmetics;
+
+    public record SearchOption
+    {
+        public bool IsContain { get; set; }
+        public string Name { get; set; }
     }
 
-    //protected override async Task OnInitializedAsync() {
-    //    _cosmetic = await CosmeticFinderApi.GetCosmetic();
-    //}
+    readonly List<SearchOption> _searchOptions = new()
+    {
+        new SearchOption {IsContain = true, Name ="  Zawiera         "},
+        new SearchOption {IsContain = false, Name ="  Nie zawiera"}
+    };
+  
+    protected override async Task OnInitializedAsync()
+    {
+        _categories = await CosmeticFinderApi.GetCategories();
+        _tags = await CosmeticFinderApi.GetTags();
+    }
 
+    private async Task SelectedPage(int page)
+    {
+        _pageNumber = page;
+        await FindCosmetics(_pageNumber);
+    }
+
+    private async Task SelectedTag(int id)
+    {
+        IsDisabled = true;
+        var tag = _tags.SingleOrDefault(a => a.Id == id);
+        _searchText = $"{_searchText} {tag.TagValue}";
+        SelectedSearchOption = false;
+        FindCosmetics(1);
+        IsDisabled = false;
+    }
+
+    private async Task SortChanged(string orderBy)
+    {
+        if (orderBy == "Nazwa a-z")
+        {
+            _sortField = "brand";
+            _ascending = true;
+        }
+        else if (orderBy == "Nazwa z-a")
+        {
+            _sortField = "brand";
+            _ascending = false;
+        }
+        else if (orderBy == "Cena rosnąco")
+        {
+            _sortField = "price";
+            _ascending = true;
+        }
+        else if (orderBy == "Cena malejąco")
+        {
+            _sortField = "price";
+            _ascending = false;
+        }
+        else if (orderBy == "- Sortuj -")
+        {
+            _sortField = "id";
+            _ascending = true;
+        }
+
+        await FindCosmetics(1);
+        await SelectedPage(1);
+    } 
+
+    async Task FindCosmetics(int page=1, int quantityPerPage = 24)
+    {
+        if (_searchText is not null && !string.IsNullOrWhiteSpace(_searchText) && SelectedCategoryId != 0)
+        {
+            var request = new GetCosmeticsRequest
+            {
+                PageNumber = page,
+                PageSize = quantityPerPage,
+                Search = _searchText,
+                MainCategoryId = SelectedCategoryId,
+                SortField = _sortField,
+                Ascending = _ascending,
+                ShouldContainCompose = SelectedSearchOption
+            };
+            LoadingOn();
+            _cosmetics = await CosmeticFinderApi.GetCosmetic(request);
+            _totalPages=_cosmetics.TotalPages;
+            _totalRecords = _cosmetics.TotalRecords;
+            LoadingOff();
+        }
+    }
+
+    void LoadingOn()
+    {
+        _isLoading = true;
+    }
+    
+    void LoadingOff()
+    {
+        _isLoading = false;
+    }
 }

@@ -1,0 +1,46 @@
+﻿
+<a href="@Url" target="_blank">
+    <div class="card bg-light mb-3" style="width: 18rem;">
+        <div class="d-flex align-items-center" style="height:200px;">
+            <img class="card-img-top " src="@Picture" alt="@Name">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                <b>@Brand @Name</b>
+            </h5>
+            <p class="card-text caption">@Caption</p>
+            <h6 class="card-text">
+                <b>
+
+                    @Price zł
+
+
+                </b>
+            </h6>
+        </div>
+    </div>
+</a>
+
+
+@code {
+    [Parameter]
+    public string Name { get; set; }
+    [Parameter]
+    public int Id { get; set; }
+    [Parameter]
+    public string Url { get; set; }
+    [Parameter]
+    public string Brand { get; set; }
+    [Parameter]
+    public string Caption { get; set; }
+    [Parameter]
+    public string Category { get; set; }
+    [Parameter]
+    public string Compose { get; set; }
+    [Parameter]
+    public double Price { get; set; }
+    [Parameter]
+    public int MainCategoryId { get; set; }
+    [Parameter]
+    public string Picture { get; set; }
+}
