@@ -2,7 +2,6 @@
 @using CosmeticFinder.FE.Gateways
 @using CosmeticFinder.FE.Gateways.Requests
 @using CosmeticFinder.FE.Gateways.Responses
-@using System.Security.AccessControl
 
 @layout MainLayout
 @inject ICosmeticFinder CosmeticFinderApi
@@ -58,17 +57,6 @@
             }
         }
     </div>
-    
-    
-   
-   @* <div class="btn-toolbar popularne-buttons" data-toggle="buttons">
-        <button class="popularne-btn btn btn-outline-danger" role="button" @onclick="Silikony"> Bez silikonów</button>
-    <button class="popularne-btn btn btn-outline-danger" role="button">Nie dla wegan </button >
-    <button class="popularne-btn btn btn-outline-danger" role="button">Bez alergenów </button >
-        <button class="popularne-btn btn btn-outline-danger" role="button">Nie dla kobiet w ciąży </button >
-        <button class="popularne-btn btn btn-outline-danger" role="button">Antyoksydanty </button>
-        <button class="popularne-btn-2 btn btn-outline-danger" role="button">Bez substancji zapachowych </button >
-    </div>*@
 
     @if (_cosmetics is not null)
     {

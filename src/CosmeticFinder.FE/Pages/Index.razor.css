@@ -1,48 +1,4 @@
 ﻿
-/*select
-input[type=text], select {
-    width: 600px;
-    padding: 1rem 1rem;
-    margin: 1rem 1rem; 
-    line-height: 16px;
-    min-height: 40px;
-    border: ridge;
-    border-width: 2px;
-    border-color: #f6f7fa;
-    box-sizing: border-box;
-    border-radius: 2rem;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-}*/
-/*
-input[type=text], select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: 1px;
-    text-overflow: '';
-}*/
-/*select.category {*/
-/*background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);*/
-/*background-position: calc(100% - 20px) calc(1em + 2px),calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
-        background-size: 5px 5px, 5px 5px, 1px 1.5em;
-        background-repeat: no-repeat;
-    }
-
-        select.category:focus {*/
-/*background-image: linear-gradient(45deg, gray 50%, transparent 50%), linear-gradient(135deg, transparent 50%, gray 50%), linear-gradient(to right, #ccc, #ccc);*/
-/*background-position: calc(100% - 15px) 1em,calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
-            background-size: 5px 5px, 5px 5px, 1px 1.5em;
-            background-repeat: no-repeat;
-            border-color: gray;
-            outline: 0;
-        }
-
-    select:-moz-focusring {
-        color: transparent;*/
-/*text-shadow: 0 0 0 #000;
-    }*/
 .container {
     position: absolute;
     top: 15rem;
@@ -57,19 +13,6 @@ input[type=text], select {
 .details {
     margin-top: 1.5rem;
     margin-bottom: 2rem;
-}
-.search_properties {
-    /* left: 0;
-    right: 0;
-    margin: auto;
-    align-items: center;
-    justify-content: center;*/
-    /*display: grid;
-    grid-gap: 10px;*/ /* Simply adjust this value !*/
-    /*grid-template-columns: repeat(3, 1fr);*/ /* OR grid-template-columns: 1fr 1fr 1fr;*/
-    /*grid-auto-rows: 1fr;
-    border: 1px solid green*/
-    /*display: block;*/
 }
 
 input, select.category, .search-btn {
@@ -145,36 +88,6 @@ select {
     margin: .5rem 3.1875rem .5rem 0;
     font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
-
-
-.search-btn {
- /*   font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background: linear-gradient(to bottom right, #c8243a, #FF9A5A);
-    border: 0.1rem solid #CB3434;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 20px;*/
-    /*outline: 0;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
-    user-select: none;
-    touch-action: manipulation;
-    vertical-align: middle;*/
-    /*float: right;*/
-}
-
-    /*.search-btn:hover,
-    .search-btn:active {
-        background-color: #EF4765;
-        background-position: 0 0;
-        color: #grey;
-    }
-
-    .search-btn:active {
-        opacity: .5;
-    }*/
 
 .morethanone {
     color: gray;
@@ -317,7 +230,6 @@ p {
         
     }
     .container {
-       /* top: 18rem;*/
         width: 50%
     }
 
@@ -336,11 +248,8 @@ p {
     .popularne-btn {
         margin-right: .5rem;
         margin-bottom: .5rem;
-       
     }
-
 }
-
 @media (max-width: 1100px) {
     .popularne-btn {
         margin-right: 2.5rem;
@@ -352,39 +261,15 @@ p {
         min-height: 35px;
     }
     .isContain {
-        /*margin: .5rem 1.1875rem .5rem .5rem;*/
         flex-direction: column;
         text-align: center;
-    }
-  /*  .container {
-        top: 10rem;
-    }*/
-}
-
-@media (max-width: 550px) {
-  /*  .container {
-        top: 0.5rem;
-    }*/
-}
-
-@media (max-width: 650px) {
-    .container {
-        /*top: 3rem;*/
     }
 }
 @media (max-width: 750px) {
     .container {
-        /*top: 11rem;*/
         width: 100%
     }
 }
-
-@media (max-width: 800px) {
-    .container {
-        /*top: 13rem;*/
-    }
-}
-
 .wrapper {
     margin-bottom: 1.5rem;
     margin-top: 1rem;
@@ -409,7 +294,6 @@ p {
     overflow: hidden;
     margin: 20px 0 20px 0;
 }
-
 
 label span {
     display: inline-block;
